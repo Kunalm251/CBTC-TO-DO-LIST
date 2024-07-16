@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<style>
+    body {
+        font-family:'Times New Roman', Times, serif;
+        text-align: center;
+        background-color: aqua;
+    }
+    
+    #task-list {
+        text-align: center;
+        scroll-behavior:auto;
+        overflow: auto; 
+        max-height: 220px;
+    
+    }
+    
+    #task-list li {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+        
+
+    }
+    
+    #task-list li:last-child {
+        border-bottom: none;
+        
+    }
+    
+    #task-list li i {
+        float: right;
+        cursor: pointer;
+    
+    }
+    
+    #add-btn {
+        background-color: #000000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    
+    #add-btn:hover {
+        background-color: white;
+        color: #000;
+        border: 1px solid black;
+    }
+    
+    .container{
+        justify-content: center;
+        border: 1px solid black;
+        width: 288px;
+        height: 400px;
+        margin-top: 95px;
+        margin-left: 510px;
+        background-color:antiquewhite;
+        border-radius: 40px;
+    
+    
+    }
+    
+    #inp{
+        border-radius: 20px;
+        height: 30px;
+        text-align: center;
+        
+    }
+</style>
+<body>
+    <div class="container">
+    <h1>To-Do List</h1>
+    <input type="text" id="inp" placeholder="Add task">
+    <button id="add-btn">Add</button>
+    <ul id="task-list"></ul>
+    </div>
+    <script>
+        let inp = document.getElementById("inp");
+        let addBtn = document.getElementById("add-btn");
+        let taskList = document.getElementById("task-list");
+
+        addBtn.addEventListener("click", addTask);
+
+        function addTask() {
+            if (inp.value === "") {
+                alert("Please add a task");
+            } else {
+                let newTask = document.createElement("li");
+                newTask.innerHTML = `${inp.value} <i>Remove</i>`;
+                taskList.appendChild(newTask);
+                inp.value = "";
+
+                newTask.querySelector("i").addEventListener("click", function () {
+                    newTask.remove();
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
